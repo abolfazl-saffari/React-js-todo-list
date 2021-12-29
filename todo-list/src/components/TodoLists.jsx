@@ -11,17 +11,14 @@ const TodoLists = () => {
         <h1>
           <Badge bg="info">Todo-list</Badge>
         </h1>
-        <Button
-          style={{ fontWeight: 700, fontSize: "1rem", color: "#fff" }}
-          variant="info"
-        >
-          <Link
-            style={{ textDecoration: "none", color: "#fff" }}
-            to="/add-todo"
+        <Link to="/add-todo">
+          <Button
+            style={{ fontWeight: 700, fontSize: "1rem", color: "#fff" }}
+            variant="info"
           >
             Create a new todo
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </div>
 
       {todoContext.todo.map((todo) => (

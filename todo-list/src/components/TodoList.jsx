@@ -57,6 +57,7 @@ const TodoList = ({ todo }) => {
           ))}
           {todo.items.every((item) => item.status === true) && (
             <Button
+              style={{ fontWeight: "700" }}
               className="mt-4"
               variant="danger"
               onClick={() => todoContext.deleteHandler(todo.id)}
