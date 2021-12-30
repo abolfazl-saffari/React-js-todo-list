@@ -1,86 +1,48 @@
 const data = [
   {
     id: 1,
-    name: "bay",
-    description: "these items need for home",
+    name: "React-js course",
+    description: "These topics is necessary",
     items: [
       {
         id: 1,
-        title: "milk",
+        title: "JSX",
         status: true,
       },
       {
         id: 2,
-        title: "cheese",
+        title: "Class Components",
         status: true,
       },
-    ],
-  },
-  {
-    id: 2,
-    name: "work",
-    description: "these items need for home",
-    items: [
       {
-        id: 1,
-        title: "cleaning home",
-        status: false,
+        id: 3,
+        title: "Props",
+        status: true,
       },
       {
-        id: 2,
-        title: "cheese",
-        status: false,
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: "download",
-    description: "these items need for home",
-    items: [
-      {
-        id: 1,
-        title: "milk",
-        status: false,
+        id: 4,
+        title: "State",
+        status: true,
       },
       {
-        id: 2,
-        title: "cheese",
-        status: false,
-      },
-    ],
-  },
-  {
-    id: 4,
-    name: "vacation destenations",
-    description: "these items need for home",
-    items: [
-      {
-        id: 1,
-        title: "milk",
-        status: false,
+        id: 5,
+        title: "Lifecycle",
+        status: true,
       },
       {
-        id: 2,
-        title: "cheese",
-        status: false,
-      },
-    ],
-  },
-  {
-    id: 5,
-    name: "project",
-    description: "these items need for home",
-    items: [
-      {
-        id: 1,
-        title: "milk",
-        status: false,
+        id: 6,
+        title: "useState",
+        status: true,
       },
       {
-        id: 2,
-        title: "cheese",
-        status: false,
+        id: 7,
+        title: "useEffect",
+        status: true,
+      },
+      {
+        id: 8,
+        title: "useContext",
+        status: true,
       },
     ],
   },

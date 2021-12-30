@@ -5,8 +5,10 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { BiPlus } from "react-icons/bi";
 const TodoList = ({ todo }) => {
   const todoContext = useContext(TodoContext);
+  const [itemInput, setItemInput] = useState("");
+
   const addItemInput = (e) => {
-    todoContext.setItemInput(e.target.value);
+    setItemInput(e.target.value);
   };
   return (
     <Card style={{ userSelect: "none" }} className="my-4" border="info">
@@ -65,7 +67,8 @@ const TodoList = ({ todo }) => {
                 e,
                 todo,
                 todo.items,
-                todoContext.itemInput
+                itemInput,
+                setItemInput
               )
             }
           >
@@ -73,7 +76,7 @@ const TodoList = ({ todo }) => {
               <Form.Control
                 type="text"
                 placeholder="Add your new item"
-                value={todoContext.itemInput}
+                value={itemInput}
                 onChange={addItemInput}
               />
               <Button className="mt-3" type="submit" variant="info">

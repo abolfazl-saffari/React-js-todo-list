@@ -5,9 +5,13 @@ import "./Style.css";
 import TodoContext from "./components/todoContext";
 import data from "./data/todosData";
 import { useState } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
+import AddTodo from "./components/AddTodo";
+import NotFound from "./components/NotFound";
 function App() {
   const [todo, setTodo] = useState(data);
-  const [itemInput, setItemInput] = useState("");
+  const [titleInput, setTitleInput] = useState("");
+  const [describeInput, setDescribeInput] = useState("");
 
   const handleCheckInput = (todoH, itemH) => {
     const todoEx = [...todo];
@@ -27,7 +31,7 @@ function App() {
     setTodo(todo.filter((todoH) => todoH.id !== id));
   };
 
-  const itemAddHandler = (e, todoH, items, itemInputs) => {
+  const itemAddHandler = (e, todoH, items, itemInputs, setItemInput) => {
     e.preventDefault();
     const todoEx = [...todo];
     const index = todoEx.indexOf(todoH);
@@ -40,31 +44,58 @@ function App() {
     }
     setItemInput("");
   };
+  const addTodoHandler = (e) => {
+    e.preventDefault();
+    const todoEx = [...todo];
+    const randomId = Math.floor(Math.random() * 1000);
+    if (titleInput.trim() && describeInput.trim() !== "") {
+      const newItem = {
+        id: randomId,
+        name: titleInput,
+        description: describeInput,
+        items: [],
+      };
+      todoEx.unshift(newItem);
+      setTodo(todoEx);
+      setTitleInput("");
+      setDescribeInput("");
+    }
+  };
 
   return (
-    <Container
-      style={{
-        minHeight: "100vh",
-        backgroundColor: "#0288D1",
-        borderRadius: "2rem",
+    <TodoContext.Provider
+      value={{
+        todo,
+        setTodo,
+        handleCheckInput,
+        numericalOrder,
+        deleteHandler,
+        itemAddHandler,
+        addTodoHandler,
+        titleInput,
+        setTitleInput,
+        describeInput,
+        setDescribeInput,
       }}
-      className="p-4 my-3"
     >
-      <TodoContext.Provider
-        value={{
-          todo,
-          setTodo,
-          handleCheckInput,
-          numericalOrder,
-          deleteHandler,
-          itemAddHandler,
-          itemInput,
-          setItemInput,
-        }}
-      >
-        <TodoLists />
-      </TodoContext.Provider>
-    </Container>
+      <Switch>
+        <Route exact path="/">
+          <Container
+            style={{
+              minHeight: "100vh",
+              backgroundColor: "#0288D1",
+              borderRadius: "2rem",
+            }}
+            className="p-4 my-3"
+          >
+            <TodoLists />
+          </Container>
+        </Route>
+        <Route exact path="/add-todo" component={AddTodo} />
+        <Route path="/not-found" component={NotFound} />
+        <Redirect to="/not-found" />
+      </Switch>
+    </TodoContext.Provider>
   );
 }
 
