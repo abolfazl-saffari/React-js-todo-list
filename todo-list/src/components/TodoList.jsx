@@ -1,13 +1,17 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Badge, Button, Card, Form } from "react-bootstrap";
 import TodoContext from "./todoContext";
 import { AiOutlineDelete } from "react-icons/ai";
+import { BiPlus } from "react-icons/bi";
 const TodoList = ({ todo }) => {
   const todoContext = useContext(TodoContext);
+  const addItemInput = (e) => {
+    todoContext.setItemInput(e.target.value);
+  };
   return (
     <Card style={{ userSelect: "none" }} className="my-4" border="info">
       <Card.Header className="cardTitle" bg="info">
-        <div class="d-flex justify-content-between align-items-center">
+        <div className="d-flex justify-content-between align-items-center">
           <h2>
             <Badge bg="dark"># {todoContext.numericalOrder(todo)}</Badge>
           </h2>
@@ -55,9 +59,31 @@ const TodoList = ({ todo }) => {
               </div>
             </Form>
           ))}
+          <Form
+            onSubmit={(e) =>
+              todoContext.itemAddHandler(
+                e,
+                todo,
+                todo.items,
+                todoContext.itemInput
+              )
+            }
+          >
+            <Form.Group>
+              <Form.Control
+                type="text"
+                placeholder="Add your new item"
+                value={todoContext.itemInput}
+                onChange={addItemInput}
+              />
+              <Button className="mt-3" type="submit" variant="info">
+                <BiPlus style={{ fontSize: "1rem", color: "#fff" }} />
+              </Button>
+            </Form.Group>
+          </Form>
           {todo.items.every((item) => item.status === true) && (
             <Button
-              style={{ fontWeight: "700" }}
+              style={{ fontWeight: "700", float: "right" }}
               className="mt-4"
               variant="danger"
               onClick={() => todoContext.deleteHandler(todo.id)}

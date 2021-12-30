@@ -7,6 +7,7 @@ import data from "./data/todosData";
 import { useState } from "react";
 function App() {
   const [todo, setTodo] = useState(data);
+  const [itemInput, setItemInput] = useState("");
 
   const handleCheckInput = (todoH, itemH) => {
     const todoEx = [...todo];
@@ -26,6 +27,20 @@ function App() {
     setTodo(todo.filter((todoH) => todoH.id !== id));
   };
 
+  const itemAddHandler = (e, todoH, items, itemInputs) => {
+    e.preventDefault();
+    const todoEx = [...todo];
+    const index = todoEx.indexOf(todoH);
+    const randomId = Math.floor(Math.random() * 1000);
+    if (itemInputs.trim() !== "") {
+      const newItem = { id: randomId, title: itemInputs, status: false };
+      todoEx[index] = todoH;
+      todoEx[index].items.push(newItem);
+      setTodo(todoEx);
+    }
+    setItemInput("");
+  };
+
   return (
     <Container
       style={{
@@ -42,6 +57,9 @@ function App() {
           handleCheckInput,
           numericalOrder,
           deleteHandler,
+          itemAddHandler,
+          itemInput,
+          setItemInput,
         }}
       >
         <TodoLists />
