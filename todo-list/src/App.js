@@ -61,6 +61,10 @@ function App() {
       setDescribeInput("");
     }
   };
+  const inputResetHandler = () => {
+    setTitleInput("");
+    setDescribeInput("");
+  };
 
   return (
     <TodoContext.Provider
@@ -76,6 +80,7 @@ function App() {
         setTitleInput,
         describeInput,
         setDescribeInput,
+        inputResetHandler,
       }}
     >
       <Switch>
@@ -85,6 +90,9 @@ function App() {
               minHeight: "100vh",
               backgroundColor: "#0288D1",
               borderRadius: "2rem",
+              boxShadow:
+                "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
+              //
             }}
             className="p-4 my-3"
           >

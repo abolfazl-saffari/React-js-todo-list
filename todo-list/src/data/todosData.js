@@ -27,7 +27,7 @@ const data = [
       {
         id: 5,
         title: "Lifecycle",
-        status: true,
+        status: false,
       },
       {
         id: 6,

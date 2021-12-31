@@ -1,10 +1,12 @@
 import { useContext } from "react";
-import { Container, Form, Badge, Button } from "react-bootstrap";
+import { Container, Form, Badge, Button, Image } from "react-bootstrap";
 import TodoContext from "./todoContext";
+import headImage from "../img/251.png";
 const AddTodo = ({ history }) => {
   const todoContext = useContext(TodoContext);
   const toHomepage = () => {
     history.replace("/");
+    todoContext.inputResetHandler();
   };
   const titleInput = (e) => {
     todoContext.setTitleInput(e.target.value);
@@ -13,25 +15,54 @@ const AddTodo = ({ history }) => {
     todoContext.setDescribeInput(e.target.value);
   };
   return (
-    <Container>
+    <Container
+      className="p-4 pt-2 pb-5 my-3 "
+      style={{
+        backgroundColor: "#0288D1",
+        borderRadius: "1rem",
+        boxShadow:
+          "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px",
+      }}
+    >
       <h1 className="mt-2">
-        <Badge bg="info">Add new todo</Badge>
+        <Badge
+          style={{
+            boxShadow:
+              "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px",
+          }}
+          bg="info"
+        >
+          Add new todo
+        </Badge>
       </h1>
-      <div
-        className="p-4 pt-2 pb-5 my-3 "
-        style={{
-          backgroundColor: "#0288D1",
-          borderRadius: "1rem",
-        }}
-      >
+      <div className="d-flex justify-content-center my-5">
+        <Image
+          className="p-5"
+          src={headImage}
+          style={{
+            width: "700px",
+            backgroundColor: "#fff",
+            borderRadius: "52% 48% 50% 50% / 63% 70% 30% 37%   ",
+          }}
+        />
+      </div>
+      <div>
         <Form
           className="py-2 mb-2"
           onSubmit={(e) => todoContext.addTodoHandler(e)}
         >
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Group className="my-3" controlId="exampleForm.ControlInput1">
             <Form.Label>
               <h3>
-                <Badge bg="info">Todo's title : </Badge>
+                <Badge
+                  style={{
+                    boxShadow:
+                      "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px",
+                  }}
+                  bg="info"
+                >
+                  Todo's title :{" "}
+                </Badge>
               </h3>
             </Form.Label>
             <Form.Control
@@ -44,7 +75,15 @@ const AddTodo = ({ history }) => {
           <Form.Group className="mb-3">
             <Form.Label>
               <h3>
-                <Badge bg="info">description : </Badge>
+                <Badge
+                  style={{
+                    boxShadow:
+                      "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px",
+                  }}
+                  bg="info"
+                >
+                  description :{" "}
+                </Badge>
               </h3>
             </Form.Label>
             <Form.Control
@@ -73,7 +112,13 @@ const AddTodo = ({ history }) => {
           <Button
             onClick={toHomepage}
             className="my-2"
-            style={{ float: "left", fontWeight: 700, color: "#fff" }}
+            style={{
+              float: "left",
+              fontWeight: 700,
+              color: "#fff",
+              boxShadow:
+                "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px",
+            }}
             variant="danger"
           >
             Back
@@ -86,7 +131,13 @@ const AddTodo = ({ history }) => {
                 : true
             }
             className="my-2"
-            style={{ float: "right", fontWeight: 700, color: "#fff" }}
+            style={{
+              float: "right",
+              fontWeight: 700,
+              color: "#fff",
+              boxShadow:
+                "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px",
+            }}
             variant="info"
           >
             Save
